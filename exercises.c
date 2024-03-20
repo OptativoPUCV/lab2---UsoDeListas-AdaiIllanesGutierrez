@@ -103,6 +103,17 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   return 0;
+  int balance = 0;
+   for (int i = 0; cadena[i] != '\0'; i++) {
+      if (cadena[i] == '(') {
+         balance++;
+      } else if (cadena[i] == ')') {
+         balance--;
+      }
+      if (balance < 0) {
+         return 0; // Unbalanced parentheses
+      }
+   }
+   return balance == 0 ? 1 : 0;
 }
 
