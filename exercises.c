@@ -93,7 +93,7 @@ Puedes usar una pila auxiliar.
 */
 
 void copia_pila(Stack* P1, Stack* P2) {
-  Stack* aux_stack = create_stack(); 
+ /* Stack* aux_stack = create_stack(); 
   void *dato = first(P1);
   while (dato!=NULL) {
       push(aux_stack, top(P1));
@@ -104,8 +104,9 @@ void copia_pila(Stack* P1, Stack* P2) {
       push(P1, element);
       push(P2, element);
       pop(aux_stack);
-  }
+  }*/
 }
+
 
 /*
 Ejercicio 5.
@@ -126,6 +127,7 @@ int parentesisBalanceados(char *cadena) {
          return 0; 
       }
    }
+  
    return balance == 0 ? 1 : 0;
 }
 
