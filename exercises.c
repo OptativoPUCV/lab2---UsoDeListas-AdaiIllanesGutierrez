@@ -105,9 +105,9 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 int parentesisBalanceados(char *cadena) {
   int balance = 0;
    for (int i = 0; cadena[i] != '\0'; i++) {
-      if (cadena[i] == '(') {
+      if (cadena[i] == '('||cadena[i] == '['||cadena[i] == '{') {
          balance++;
-      } else if (cadena[i] == ')') {
+      } else if (cadena[i] == ')'||cadena[i] == ']'||cadena[i] == '}') {
          balance--;
       }
       if (balance < 0) {
