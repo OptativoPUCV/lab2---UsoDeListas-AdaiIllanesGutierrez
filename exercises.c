@@ -64,7 +64,6 @@ int sumaLista(List *L) {
       elemento = (int*)next(L);
    }
    return suma;
- 
 }
 
 /*
@@ -77,7 +76,15 @@ posiciona en el elemento anterior.
 */
 
 void eliminaElementos(List*L, int elem){
-
+  //void* elementos = first(lista);
+  void *elemento = first(L);
+  while (elemento != NULL) {
+      if (*(int*)elemento == elem) {
+          elemento = popCurrent(L); // Eliminate the current element and go to the previous one
+      } else {
+          elemento = next(L);
+      }
+  }
 }
 
 /*
