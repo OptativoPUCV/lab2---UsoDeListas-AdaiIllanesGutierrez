@@ -141,7 +141,7 @@ int parentesisBalanceados(char *cadena) {
       } else if (cadena[i] == ')'||cadena[i] == ']'||cadena[i] == '}') {
          balance--;
       }
-      if (balance <= 0) {
+      if (balance < 0) {
          return 0; 
       }
 
