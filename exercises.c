@@ -111,7 +111,7 @@ int parentesisBalanceados(char *cadena) {
          balance--;
       }
       if (balance < 0) {
-         return 0; // Unbalanced parentheses
+         return 0; 
       }
    }
    return balance == 0 ? 1 : 0;
