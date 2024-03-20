@@ -110,13 +110,11 @@ Puedes usar una pila auxiliar.
 void copia_pila(Stack* P1, Stack* P2) {
     // Crear una pila auxiliar
     Stack* aux_stack = create_stack();
-
     // Copiar los elementos de P1 a la pila auxiliar y mantener el orden
     while (top(P1) != NULL) {
         push(aux_stack, top(P1));
         pop(P1);
     }
-
     // Restaurar el orden de los elementos en P1 y copiarlos a P2
     while (top(aux_stack) != NULL) {
         void* element = top(aux_stack);
@@ -135,7 +133,7 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 0 en caso contrario.
 */
 
-int parentesisBalanceados(char *cadena) {
+/*int parentesisBalanceados(char *cadena) {
   int balance = 0;
    for (int i = 0; cadena[i] != '\0'; i++) {
       if (cadena[i] == '('||cadena[i] == '['||cadena[i] == '{') {
@@ -149,5 +147,31 @@ int parentesisBalanceados(char *cadena) {
    }
   
    return balance == 0 ? 1 : 0;
-}
+}*/
 
+int parentesisBalanceados(char *cadena) {
+  Stack *s = create_stack();
+
+  while (*cadena != '\0') {
+      if (*cadena == '(' || *cadena == '[' || *cadena == '{') {
+          // Si se encuentra un paréntesis de apertura, se agrega a la pila
+          push(s, cadena);
+      } else if (*cadena == ')' || *cadena == ']' || *cadena == '}') {
+          // Si se encuentra un paréntesis de cierre
+          if (s == NULL) {
+              // Si la pila está vacía, no hay un paréntesis de apertura correspondiente
+              return 0;
+          }
+          char *topChar = (char*)pop(s);
+          if ((*cadena == ')' && *topChar != '(') ||
+              (*cadena == ']' && *topChar != '[') ||
+              (*cadena == '}' && *topChar != '{')) {
+              // Si el paréntesis de cierre no coincide con el paréntesis de apertura superior en la pila
+              return 0;
+          }
+      }
+      cadena++;
+  }
+  // Si la pila está vacía al final, todos los paréntesis están balanceados
+  return s == NULL;
+}
