@@ -76,12 +76,12 @@ posiciona en el elemento anterior.
 */
 
 void eliminaElementos(List*L, int elem){
-  void *elemento = first(L); // Obtener el primer elemento de la lista
+  void* elemento = first(L);
   while (elemento != NULL) {
       if (*(int*)elemento == elem) {
-          elemento = popCurrent(L); // Eliminar el elemento actual y moverse al anterior
+          elemento = popCurrent(L);
       } else {
-          elemento = next(L); // Moverse al siguiente elemento
+          elemento = next(L);
       }
   }
 }
