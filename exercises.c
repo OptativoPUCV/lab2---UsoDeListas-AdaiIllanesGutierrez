@@ -141,24 +141,25 @@ int parentesisBalanceados(char *cadena) {
           push(stack, &cadena[i]);
       } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
           if (top(stack) == NULL) {
-              //destroy_stack(stack);
               return 0; 
           }
-
           char *top_char = (char *)top(stack);
           if ((cadena[i] == ')' && *top_char == '(') ||
               (cadena[i] == ']' && *top_char == '[') ||
               (cadena[i] == '}' && *top_char == '{')) {
               pop(stack);
           } else {
-              //destroy_stack(stack);
               return 0; 
           }
       }
   }
-
-  int balanceados = (top(stack) == NULL) ? 1 : 0;
- // destroy_stack(stack);
+  int balanceados;
+  if (top(stack) == NULL) {
+    balanceados = 1; // Si la pila está vacía, los paréntesis están balanceados
+} else {
+    balanceados = 0; // Si la pila no está vacía, los paréntesis no están balanceados
+}
+  /*int balanceados = (top(stack) == NULL) ? 1 : 0;*/
   return balanceados;
 }
 /*
