@@ -136,14 +136,13 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 int parentesisBalanceados(char *cadena) {
   int len = strlen(cadena);
   Stack *stack = create_stack();
-
   for (int i = 0; i < len; i++) {
       if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
           push(stack, &cadena[i]);
       } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
           if (top(stack) == NULL) {
               //destroy_stack(stack);
-              return 0; // Paréntesis desbalanceados, hay un cierre sin su correspondiente apertura
+              return 0; 
           }
 
           char *top_char = (char *)top(stack);
@@ -153,7 +152,7 @@ int parentesisBalanceados(char *cadena) {
               pop(stack);
           } else {
               //destroy_stack(stack);
-              return 0; // Paréntesis desbalanceados, el cierre no coincide con la última apertura
+              return 0; 
           }
       }
   }
