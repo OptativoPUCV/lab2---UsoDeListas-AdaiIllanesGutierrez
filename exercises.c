@@ -134,21 +134,33 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-  int balance = 0;
-  //crear pila ir guardando 
-  for (int i = 0; cadena[i] != '\0'; i++) {
-      if (cadena[i] == '('||cadena[i] == '['||cadena[i] == '{') {
-         balance++;
-      } else if (cadena[i] == ')'||cadena[i] == ']'||cadena[i] == '}') {
-         balance--;
-      }
-      if (balance < 0) {
-         return 0; 
-      }
+  int len = strlen(cadena);
+  Stack *stack = create_stack();
 
-   }
-  
-   return balance == 0 ? 1 : 0;
+  for (int i = 0; i < len; i++) {
+      if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
+          push(stack, &cadena[i]);
+      } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
+          if (top(stack) == NULL) {
+              //destroy_stack(stack);
+              return 0; // Paréntesis desbalanceados, hay un cierre sin su correspondiente apertura
+          }
+
+          char *top_char = (char *)top(stack);
+          if ((cadena[i] == ')' && *top_char == '(') ||
+              (cadena[i] == ']' && *top_char == '[') ||
+              (cadena[i] == '}' && *top_char == '{')) {
+              pop(stack);
+          } else {
+              //destroy_stack(stack);
+              return 0; // Paréntesis desbalanceados, el cierre no coincide con la última apertura
+          }
+      }
+  }
+
+  int balanceados = (top(stack) == NULL) ? 1 : 0;
+ // destroy_stack(stack);
+  return balanceados;
 }
 /*
 int parentesisBalanceados(char *cadena) {
