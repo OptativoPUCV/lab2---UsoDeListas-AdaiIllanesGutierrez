@@ -161,6 +161,6 @@ int parentesisBalanceados(char *cadena) {
     balanceados = 0; // Si la pila no está vacía, los paréntesis no están balanceados
 }*/
   //SINTAXYS MAS CORTA
-  int balanceados = (top(stack) == NULL) ? 1 : 0;
-  return balanceados;
+  int balance = (top(stack) == NULL) ? 1 : 0;
+  return balance;
 }
