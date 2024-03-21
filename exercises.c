@@ -134,58 +134,33 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-  int len = strlen(cadena);
+  int tamanio = strlen(cadena);
   Stack *stack = create_stack();
-  for (int i = 0; i < len; i++) {
+  for (int i = 0; i < tamanio ; i++) {
       if (cadena[i] == '(' || cadena[i] == '[' || cadena[i] == '{') {
           push(stack, &cadena[i]);
       } else if (cadena[i] == ')' || cadena[i] == ']' || cadena[i] == '}') {
           if (top(stack) == NULL) {
               return 0; 
           }
-          char *top_char = (char *)top(stack);
-          if ((cadena[i] == ')' && *top_char == '(') ||
-              (cadena[i] == ']' && *top_char == '[') ||
-              (cadena[i] == '}' && *top_char == '{')) {
+          char *top_c = (char *)top(stack);
+          if ((cadena[i] == ')' && *top_c == '(') ||
+              (cadena[i] == ']' && *top_c == '[') ||
+              (cadena[i] == '}' && *top_c == '{')) {
               pop(stack);
           } else {
               return 0; 
           }
       }
   }
+  /* //OPCION CONDICIONAL
   int balanceados;
   if (top(stack) == NULL) {
     balanceados = 1; // Si la pila está vacía, los paréntesis están balanceados
 } else {
     balanceados = 0; // Si la pila no está vacía, los paréntesis no están balanceados
-}
-  /*int balanceados = (top(stack) == NULL) ? 1 : 0;*/
+}*/
+  //SINTAXYS MAS CORTA
+  int balanceados = (top(stack) == NULL) ? 1 : 0;
   return balanceados;
 }
-/*
-int parentesisBalanceados(char *cadena) {
-  Stack *s = create_stack();
-
-  while (*cadena != '\0') {
-      if (*cadena == '(' || *cadena == '[' || *cadena == '{') {
-          // Si se encuentra un paréntesis de apertura, se agrega a la pila
-          push(s, cadena);
-      } else if (*cadena == ')' || *cadena == ']' || *cadena == '}') {
-          // Si se encuentra un paréntesis de cierre
-          if (s == NULL) {
-              // Si la pila está vacía, no hay un paréntesis de apertura correspondiente
-              return 0;
-          }
-          char *topChar = (char*)pop(s);
-          if ((*cadena == ')' && *topChar != '(') ||
-              (*cadena == ']' && *topChar != '[') ||
-              (*cadena == '}' && *topChar != '{')) {
-              // Si el paréntesis de cierre no coincide con el paréntesis de apertura superior en la pila
-              return 0;
-          }
-      }
-      cadena++;
-  }
-  // Si la pila está vacía al final, todos los paréntesis están balanceados
-  return s == NULL;
-}*/
